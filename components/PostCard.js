@@ -51,7 +51,7 @@ const PostCard = ({ post }) => {
                 <Card.Meta
                     avatar={<Avatar>post.User.nickname[0]</Avatar>}
                     title={post.User.nickname}
-                    description={post.content}
+                    description={<PostCardContent postData={post.content}/>}
                 />
                 
                 {/* <CommentForm/>
@@ -89,7 +89,7 @@ PostCard.prototypes ={
         User: PropTypes.object,
         content: PropTypes.string,
         createdAt: PropTypes.object,
-        Comment: PropTypes.arrayOf(PropTypes.object),
+        Comments: PropTypes.arrayOf(PropTypes.object),
         Images: PropTypes.arrayOf(PropTypes.object),
     }).isRequired,
 } 
