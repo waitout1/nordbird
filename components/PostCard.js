@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 
 import PostImages from './PostImages';
 import CommentForm from './CommentForm';
+import PostCardContent from './PostCardContent'
 
 
 
