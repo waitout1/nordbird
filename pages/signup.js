@@ -6,7 +6,7 @@ import styled from 'styled-components'
 import AppLayout from '../components/AppLayout';
 import useInput from '../hooks/useInput';
 import { SIGN_UP_REQUEST } from '../reducers/user';
-import { useDispatch, useSelection } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ErrorMessage = styled.div`
     color: red;
@@ -14,7 +14,7 @@ const ErrorMessage = styled.div`
 
 const Signup = () => {
     const dispatch = useDispatch();
-    const { signUpLoading } = useSelection((state) => state.user);
+    const { signUpLoading } = useSelector((state) => state.user);
 
     const [email, onChangeEmail] = useInput('');
     const [nickname, onChangeNickname] = useInput('');
@@ -71,7 +71,7 @@ const Signup = () => {
                 <div>
                     <label htmlFor="user-email">이메일</label>
                     <br />
-                    <Input name="user-email" value={email} onChange={onChangeEmail} required />
+                    <Input name="user-email" type="email" value={email} onChange={onChangeEmail} required />
                 </div>
                 <div>
                     <label htmlFor="user-id">닉네임</label>

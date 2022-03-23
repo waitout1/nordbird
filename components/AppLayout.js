@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import Link from 'next/Link'
 import { Menu, Input, Row, Col } from 'antd';
 import styled from 'styled-components';
@@ -39,16 +39,16 @@ const AppLayout = ({ children }) => {
             <Global />
             <div> 
                 <Menu mode="horizontal">
-                    <Menu.Item>
+                    <Menu.Item key={"home"}>
                         <Link href="/"><a>노드버드</a></Link>
                     </Menu.Item>
-                    <Menu.Item>
+                    <Menu.Item key={"profile"}>
                         <Link href="/profile"><a>프로필</a></Link>
                     </Menu.Item>
-                    <Menu.Item>
+                    <Menu.Item key={"search"}>
                         <SearchInput enterButton style={{  }}/>
                     </Menu.Item>
-                    <Menu.Item>
+                    <Menu.Item key={"signup"}>
                         <Link href="/signup"><a>회원가입</a></Link>
                     </Menu.Item>
                 </Menu>

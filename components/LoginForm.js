@@ -17,7 +17,7 @@ const FormWrapper = styled(Form)`
 `;
 
 const LoginForm = () => {
-    const [email, onChangeEmail] = useInput('12');
+    const [email, onChangeEmail] = useInput('12@a.com');
     const [password, onChangePassword] = useInput('12');
     const dispatch = useDispatch();
     const { logInLoading } = useSelector((state) => state.user);
@@ -48,9 +48,9 @@ const LoginForm = () => {
     return (
         <FormWrapper onFinish={onSubmitForm}>
             <div>
-                <label htmlFor='user-id'>이메일</label>
+                <label htmlFor='user-email'>이메일</label>
                 <br></br>
-                <Input name="user-id" value={email} onChange={onChangeEmail} required />
+                <Input name="user-email" type="email" value={email} onChange={onChangeEmail} required />
             </div>
             <div>
             <label htmlFor='user-password'>비밀번호</label>

@@ -1,3 +1,5 @@
+import shortId from 'shortid';
+
 export const initialState = {
     mainPosts: [{
         id: 1,
@@ -20,12 +22,14 @@ export const initialState = {
         Comments: [
             {
                 User: {
+                    userId: 2,
                     nickname: 'nero',
                 },
                 content: '우오앙',
             },
             {
                 User: {
+                    userId: 3,
                     nickname: 'mzoq',
                 },
                 content: 'gooD 1!',
@@ -71,16 +75,25 @@ export const addComment = (data) => ({
 });
 
 
-const dummyPost = {
-    id: 2,
-    content: '더미데이터입니다',
+const dummyPost = (data) => ({
+    id: shortId.generate() ,
+    content: data,
     User: {
         id: 1,
         nickname: '제로초',
     },
     Images: [],
     Comments: [],
-}
+});
+
+const dummyComment = (data) => ({
+    id: shortId.generate() ,
+    content: data,
+    User: {
+        id: 1,
+        nickname: '제로초',
+    },
+});
 
 
 const reducer = (state = initialState, action) => {
@@ -95,7 +108,7 @@ const reducer = (state = initialState, action) => {
         case ADD_POST_SUCCESS:
             return {
                 ...state,
-                mainPosts: [dummyPost, ...state.mainPosts],
+                mainPosts: [dummyPost(action.data), ...state.mainPosts],
                 addPostLoading: false,
                 addPostDone: true,
             }
@@ -105,8 +118,6 @@ const reducer = (state = initialState, action) => {
                 addPostLoading: false,
                 addPostError: action.error, 
             }
-
-
         case ADD_COMMENT_REQUEST:
             return{
                 ...state,
@@ -115,9 +126,18 @@ const reducer = (state = initialState, action) => {
                 addCommentError: null,
             }
         case ADD_COMMENT_SUCCESS:
+            const postIndex = state.mainPosts.findIndex((v) => v.id === action.data.postId);
+            const post = { ...state.mainPosts[postIndex] };
+            console.log(`JSON.stringify(post) : ${JSON.stringify(post)}`);
+            console.log(`{console.log(typeof postData)} : ${(typeof post)}`);
+            // console.log(mainPosts);
+            post.Comments = [dummyComment(action.data.content), ...post.Comments];
+            const mainPosts = [...state.mainPosts];
+            mainPosts[postIndex] = post;
+
             return {
                 ...state,
-                mainPosts: [dummyPost, ...state.mainPosts],
+                mainPosts,
                 addCommentLoading: false,
                 addCommentDone: true,
             }

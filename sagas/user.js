@@ -15,7 +15,8 @@ function* logIn(action){
         //fork는 비동기 함수 호출, call 동기 함수 호출
         // await 과 비슷 하게 
         // const result = yield call(logInAPI, action.data);
-        yield delay(1000);
+        yield axios.post('http://test.aoaa.co', { nickname: data });
+        // yield delay(1000);
         yield put({
             type: LOG_IN_SUCCESS,
             data: action.data,

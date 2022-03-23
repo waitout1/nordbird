@@ -31,8 +31,8 @@ const UserProfile = () => {
     );
 }
 
-UserProfile.propTypes = {
-    setIsLoggedIn: PropTypes.func.isRequired,
-}
+// UserProfile.propTypes = {
+    // setIsLoggedIn: PropTypes.func.isRequired,
+// }
 
 export default UserProfile;
